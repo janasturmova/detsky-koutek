@@ -12,13 +12,15 @@ const App = () => {
   return(
     <div className="container">
       <h1>Dětský koutek</h1>
-      <Link to='/homepage'>Domů</Link>
-      <span>|</span>
-      <Link to='/about'>O nás</Link>
-      <span>|</span>
-      <Link to='/centersPage'>Pobočky</Link>
-      <span>|</span>
-      <Link to='/contact'>Kontakt</Link>
+      <nav>
+        <Link to='/'>Domů</Link>
+        <span>|</span>
+        <Link to='/about'>O nás</Link>
+        <span>|</span>
+        <Link to='/centersPage'>Pobočky</Link>
+        <span>|</span>
+        <Link to='/contact'>Kontakt</Link>
+      </nav>
       <Outlet></Outlet>
     </div>
   )
@@ -30,7 +32,7 @@ const router = createBrowserRouter ([{
   errorElement: <ErrorPage/>,
   children: [
   {
-    path: '/homepage',
+    path: '/',
     element: <HomePage/>
   },
   {
@@ -39,15 +41,17 @@ const router = createBrowserRouter ([{
   },
   {
     path: '/centersPage',
-    element: <CentersPage/>
+    element: <CentersPage/>,
+    children: [
+      {
+        path: ':id',
+        element: <CenterDetail/>
+      }
+    ]
   },
   {
     path: '/contact',
     element: <Contact/>
-  },
-  {
-    path: 'pobocky/:id',
-    element: <CenterDetail/>
   },
 ]
 }])

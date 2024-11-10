@@ -13,7 +13,7 @@ export const CenterDetail = () =>{
             const data = await response.json()
             setCenter(data.data)
          } 
-         console.log(center)
+         
          getData()
          
          
